@@ -1,0 +1,11 @@
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Ecommerce.Common\bin\Debug\net6.0\Pacagroup.Ecommerce.Common.deps.json
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Ecommerce.Common\bin\Debug\net6.0\Pacagroup.Ecommerce.Common.dll
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Ecommerce.Common\bin\Debug\net6.0\Pacagroup.Ecommerce.Common.pdb
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Ecommerce.Common\obj\Debug\net6.0\Pacagroup.Ecommerce.Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Ecommerce.Common\obj\Debug\net6.0\Pacagroup.Ecommerce.Common.AssemblyInfoInputs.cache
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Ecommerce.Common\obj\Debug\net6.0\Pacagroup.Ecommerce.Common.AssemblyInfo.cs
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Ecommerce.Common\obj\Debug\net6.0\Pacagroup.Ecommerce.Common.csproj.CoreCompileInputs.cache
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Ecommerce.Common\obj\Debug\net6.0\Pacagroup.Ecommerce.Common.dll
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Ecommerce.Common\obj\Debug\net6.0\refint\Pacagroup.Ecommerce.Common.dll
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Ecommerce.Common\obj\Debug\net6.0\Pacagroup.Ecommerce.Common.pdb
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Ecommerce.Common\obj\Debug\net6.0\ref\Pacagroup.Ecommerce.Common.dll

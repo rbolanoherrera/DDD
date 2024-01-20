@@ -1,0 +1,15 @@
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Infrastructure.Interface\bin\Debug\net6.0\Pacagroup.Ecommerce.Infrastructure.Interface.deps.json
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Infrastructure.Interface\bin\Debug\net6.0\Pacagroup.Ecommerce.Infrastructure.Interface.dll
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Infrastructure.Interface\bin\Debug\net6.0\Pacagroup.Ecommerce.Infrastructure.Interface.pdb
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Infrastructure.Interface\bin\Debug\net6.0\Pacagroup.Ecommerce.Domain.Entity.dll
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Infrastructure.Interface\bin\Debug\net6.0\Pacagroup.Ecommerce.Domain.Entity.pdb
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Infrastructure.Interface\obj\Debug\net6.0\Pacagroup.Ecommerce.Infrastructure.Interface.csproj.AssemblyReference.cache
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Infrastructure.Interface\obj\Debug\net6.0\Pacagroup.Ecommerce.Infrastructure.Interface.GeneratedMSBuildEditorConfig.editorconfig
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Infrastructure.Interface\obj\Debug\net6.0\Pacagroup.Ecommerce.Infrastructure.Interface.AssemblyInfoInputs.cache
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Infrastructure.Interface\obj\Debug\net6.0\Pacagroup.Ecommerce.Infrastructure.Interface.AssemblyInfo.cs
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Infrastructure.Interface\obj\Debug\net6.0\Pacagroup.Ecommerce.Infrastructure.Interface.csproj.CoreCompileInputs.cache
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Infrastructure.Interface\obj\Debug\net6.0\Pacagroup.Ecommerce.Infrastructure.Interface.csproj.CopyComplete
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Infrastructure.Interface\obj\Debug\net6.0\Pacagroup.Ecommerce.Infrastructure.Interface.dll
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Infrastructure.Interface\obj\Debug\net6.0\refint\Pacagroup.Ecommerce.Infrastructure.Interface.dll
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Infrastructure.Interface\obj\Debug\net6.0\Pacagroup.Ecommerce.Infrastructure.Interface.pdb
+D:\dev\NET\Pacagroup.Ecommerce\Pacagroup.Infrastructure.Interface\obj\Debug\net6.0\ref\Pacagroup.Ecommerce.Infrastructure.Interface.dll
