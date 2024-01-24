@@ -2,11 +2,14 @@
 
 namespace Pacagroup.Ecommerce.Services.WebApi.Controllers
 {
+    [Route("[controller]")]
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        [HttpGet]
+        public ActionResult Index()
         {
-            return View(System.DateTime.Now);
+
+            return View();
         }
     }
 }

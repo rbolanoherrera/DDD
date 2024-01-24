@@ -35,7 +35,7 @@ namespace Pacagroup.Ecommerce.Services.WebApi.Controllers
             return BadRequest(response.Message);
         }
 
-        [HttpPut]
+        [HttpPut("update")]
         public IActionResult Update(CustomerDTO customer)
         {
             if (customer == null)
@@ -48,7 +48,7 @@ namespace Pacagroup.Ecommerce.Services.WebApi.Controllers
             return BadRequest(response.Message);
         }
 
-        [HttpDelete]
+        [HttpDelete("delete")]
         public IActionResult Delete(string customerId)
         {
             if (string.IsNullOrEmpty(customerId))
@@ -101,7 +101,7 @@ namespace Pacagroup.Ecommerce.Services.WebApi.Controllers
             return BadRequest(response.Message);
         }
 
-        [HttpPut]
+        [HttpPut("UpdateAsync")]
         public async Task<IActionResult> UpdateAsync(CustomerDTO customer)
         {
             if (customer == null)
@@ -114,7 +114,7 @@ namespace Pacagroup.Ecommerce.Services.WebApi.Controllers
             return BadRequest(response.Message);
         }
 
-        [HttpDelete]
+        [HttpDelete("DeleteAsync")]
         public async Task<IActionResult> DeleteAsync(string customerId)
         {
             if (string.IsNullOrEmpty(customerId))
