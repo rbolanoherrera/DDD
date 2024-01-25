@@ -22,6 +22,7 @@ namespace Pacagroup.Ecommerce.Services.WebApi
 {
     public class Startup
     {
+        readonly string myCORSPolicy = "policyAPIDDD";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -34,6 +35,13 @@ namespace Pacagroup.Ecommerce.Services.WebApi
         {
             services.AddControllers();
             services.AddBuilders();//del proyecto Mapper
+
+            services.AddCors(options => options.AddPolicy(myCORSPolicy, 
+                builder => builder.WithOrigins(Configuration["OriginsCORS"])
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+            ));
+
             services.AddMvc();
 
             //services.AddJsonOptions(options =>
@@ -92,7 +100,13 @@ namespace Pacagroup.Ecommerce.Services.WebApi
                 //});
             }
 
-
+            //app.UseCors(c =>
+            //{
+            //    c.AllowAnyOrigin();
+            //    c.AllowAnyHeader();
+            //    c.AllowAnyMethod();
+            //});
+            app.UseCors(myCORSPolicy);
 
             app.UseRouting();
 
