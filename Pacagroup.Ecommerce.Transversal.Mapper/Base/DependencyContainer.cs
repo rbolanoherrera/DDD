@@ -7,6 +7,7 @@ namespace Pacagroup.Ecommerce.Transversal.Mapper.Base
         public static IServiceCollection AddBuilders(this IServiceCollection services)
         {
             services.AddScoped<CustomerBuilder>();
+            services.AddScoped<UserBuilder>();
 
             return services;
         }
