@@ -11,11 +11,13 @@ namespace Pacagroup.Ecommerce.Application.Main
     {
         private readonly IUserDomain userDomain;
         private readonly UserBuilder userBuilder;
+        private readonly IAppLogger<UserApplication> logger;
 
-        public UserApplication(IUserDomain userDomain, UserBuilder userBuilder)
+        public UserApplication(IUserDomain userDomain, UserBuilder userBuilder, IAppLogger<UserApplication> logger)
         {
             this.userDomain = userDomain;
             this.userBuilder = userBuilder;
+            this.logger = logger;
         }
 
         public Response<UserDTO> Authenticate(string username, string password)
@@ -55,6 +57,8 @@ namespace Pacagroup.Ecommerce.Application.Main
             {
                 response.IsSuccess = false;
                 response.Message = ex.Message;
+
+                logger.LogError($"Error en metodo Authenticate. {ex.Message}");
             }
 
             return response;

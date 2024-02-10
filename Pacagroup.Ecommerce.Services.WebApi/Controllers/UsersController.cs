@@ -19,11 +19,15 @@ namespace Pacagroup.Ecommerce.Services.WebApi.Controllers
     public class UsersController : Controller
     {
         private readonly IUserApplication userApplication;
+        private readonly IAppLogger<UsersController> logger;
         private readonly AppSettings appSettings;
 
-        public UsersController(IUserApplication userApplication, IOptions<AppSettings> appSettings)
+        public UsersController(IUserApplication userApplication, 
+            IOptions<AppSettings> appSettings,
+            IAppLogger<UsersController> logger)
         {
             this.userApplication = userApplication;
+            this.logger = logger;
             this.appSettings = appSettings.Value;
         }
 
@@ -32,6 +36,8 @@ namespace Pacagroup.Ecommerce.Services.WebApi.Controllers
         [Route("[action]")]
         public IActionResult Authenticate([FromBody]UserDTO userDTO)
         {
+            logger.LogInformation($"entro a autenticarse {System.DateTime.Now}");
+
             var response = userApplication.Authenticate(userDTO.UserName, userDTO.Password);
 
             if (response.Data != null)

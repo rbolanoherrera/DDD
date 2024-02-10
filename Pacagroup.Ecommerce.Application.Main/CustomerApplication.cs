@@ -11,11 +11,15 @@ namespace Pacagroup.Ecommerce.Application.Main
     {
         private readonly ICustomerDomain customerDomain;
         private readonly CustomerBuilder customerBuilder;
+        private readonly IAppLogger<CustomerApplication> logger;
 
-        public CustomerApplication(ICustomerDomain customerDomain, CustomerBuilder customerBuilder)
+        public CustomerApplication(ICustomerDomain customerDomain, 
+            CustomerBuilder customerBuilder,
+            IAppLogger<CustomerApplication> logger)
         {
             this.customerDomain = customerDomain;
             this.customerBuilder = customerBuilder;
+            this.logger = logger;
         }
 
         #region "Metodos Sincronos"
@@ -38,6 +42,8 @@ namespace Pacagroup.Ecommerce.Application.Main
             }
             catch(Exception ex)
             {
+                logger.LogError($"Error en metodo Insert. {ex.Message}", ex);
+
                 response.Data = false;
                 response.IsSuccess = false;
                 response.Message = $"Ocurrio un error al insertar al Cliente. {ex.Message}";
@@ -65,6 +71,8 @@ namespace Pacagroup.Ecommerce.Application.Main
             }
             catch (Exception ex)
             {
+                logger.LogError($"Error en metodo Update. {ex.Message}", ex);
+
                 response.Data = false;
                 response.IsSuccess = false;
                 response.Message = $"Ocurrio un error al actualizar un Cliente. {ex.Message}";
@@ -91,6 +99,8 @@ namespace Pacagroup.Ecommerce.Application.Main
             }
             catch (Exception ex)
             {
+                logger.LogError($"Error en metodo Delete. {ex.Message}", ex);
+
                 response.Data = false;
                 response.IsSuccess = false;
                 response.Message = $"Ocurrio un error al eliminar un Cliente. {ex.Message}";
@@ -118,6 +128,8 @@ namespace Pacagroup.Ecommerce.Application.Main
             }
             catch (Exception ex)
             {
+                logger.LogError($"Error en metodo Get. {ex.Message}", ex);
+
                 response.IsSuccess = false;
                 response.Message = $"Ocurrio un error al obtener el Cliente. {ex.Message}";
             }
@@ -128,6 +140,8 @@ namespace Pacagroup.Ecommerce.Application.Main
         public Response<IEnumerable<CustomerDTO>> GetAll()
         {
             var response = new Response<IEnumerable<CustomerDTO>>();
+
+            logger.LogInformation("entro a metodo GetAll");
 
             try
             {
@@ -144,6 +158,8 @@ namespace Pacagroup.Ecommerce.Application.Main
             }
             catch (Exception ex)
             {
+                logger.LogError($"Error en metodo GetAll. {ex.Message}", ex);
+
                 response.IsSuccess = false;
                 response.Message = $"Ocurrio un error al obtener el Cliente. {ex.Message}";
             }
@@ -174,6 +190,8 @@ namespace Pacagroup.Ecommerce.Application.Main
             }
             catch (Exception ex)
             {
+                logger.LogError($"Error en metodo InsertAsync. {ex.Message}", ex);
+
                 response.Data = false;
                 response.IsSuccess = false;
                 response.Message = $"Ocurrio un error al insertar al Cliente. {ex.Message}";
@@ -201,6 +219,8 @@ namespace Pacagroup.Ecommerce.Application.Main
             }
             catch (Exception ex)
             {
+                logger.LogError($"Error en metodo UpdateAsync. {ex.Message}", ex);
+
                 response.Data = false;
                 response.IsSuccess = false;
                 response.Message = $"Ocurrio un error al actualizar un Cliente. {ex.Message}";
@@ -227,6 +247,8 @@ namespace Pacagroup.Ecommerce.Application.Main
             }
             catch (Exception ex)
             {
+                logger.LogError($"Error en metodo DeleteAsync. {ex.Message}", ex);
+
                 response.Data = false;
                 response.IsSuccess = false;
                 response.Message = $"Ocurrio un error al eliminar un Cliente. {ex.Message}";
@@ -254,6 +276,8 @@ namespace Pacagroup.Ecommerce.Application.Main
             }
             catch (Exception ex)
             {
+                logger.LogError($"Error en metodo GetAsync. {ex.Message}", ex);
+
                 response.IsSuccess = false;
                 response.Message = $"Ocurrio un error al obtener el Cliente. {ex.Message}";
             }
@@ -264,6 +288,7 @@ namespace Pacagroup.Ecommerce.Application.Main
         public async Task<Response<IEnumerable<CustomerDTO>>> GetAllAsync()
         {
             var response = new Response<IEnumerable<CustomerDTO>>();
+            logger.LogInformation("entro a metodo GetAllAsync");
 
             try
             {
@@ -280,6 +305,8 @@ namespace Pacagroup.Ecommerce.Application.Main
             }
             catch (Exception ex)
             {
+                logger.LogError($"Error en metodo GetAllAsync. {ex.Message}", ex);
+
                 response.IsSuccess = false;
                 response.Message = $"Ocurrio un error al obtener el Cliente. {ex.Message}";
             }

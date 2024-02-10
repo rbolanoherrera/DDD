@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Pacagroup.Ecommerce.Application.Interface;
@@ -15,14 +16,12 @@ using Pacagroup.Ecommerce.Infrastructure.Interface;
 using Pacagroup.Ecommerce.Infrastructure.Repository;
 using Pacagroup.Ecommerce.Services.WebApi.Helpers;
 using Pacagroup.Ecommerce.Transversal.Common;
+using Pacagroup.Ecommerce.Transversal.Logging;
 using Pacagroup.Ecommerce.Transversal.Mapper.Base;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Net;
 using System.Reflection;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Pacagroup.Ecommerce.Services.WebApi
@@ -30,9 +29,13 @@ namespace Pacagroup.Ecommerce.Services.WebApi
     public class Startup
     {
         readonly string myCORSPolicy = "policyAPIDDD";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+        
+            LoggerText.HabilitarLogTxt = Convert.ToBoolean(Configuration["HabilitarLogTxt"]);
+            LoggerText.PathFile = System.Environment.CurrentDirectory + @"\logs";
         }
 
         public IConfiguration Configuration { get; }
@@ -55,12 +58,24 @@ namespace Pacagroup.Ecommerce.Services.WebApi
             //                options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             //);
 
+            services.AddLogging(options =>
+            {
+                options.AddConsole();
+            });
+
+            //LoggerText.writeLog("antes de GetSection(\"ConfigJWT\")");
+
             var settingsJWT = Configuration.GetSection("ConfigJWT");
             services.Configure<AppSettings>(settingsJWT);
+
+            //LoggerText.writeLog("despues de settingsJWT");
 
             services.AddSingleton<IConfiguration>(Configuration);
             
             services.AddSingleton<IConnectionFactory, ConnectionFactory>();
+            services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
+
+            //LoggerText.writeLog("despues de typeof(LoggerAdapter<>)");
 
             services.AddScoped<ICustomerApplication, CustomerApplication>();
             services.AddScoped<ICustomerDomain, CustomerDomain>();
@@ -69,9 +84,13 @@ namespace Pacagroup.Ecommerce.Services.WebApi
             services.AddScoped<IUserDomain, UserDomain>();
             services.AddScoped<IUserRepository, UserRepository>();
 
+            //LoggerText.writeLog("antes de GetValue<string>(\"Secret\")");
+
             byte[] key = Encoding.ASCII.GetBytes(settingsJWT.GetValue<string>("Secret"));
             string issuer = settingsJWT.GetValue<string>("Issuer");
             string audience = settingsJWT.GetValue<string>("Audience");
+
+            //LoggerText.writeLog("despues de GetValue<string>(\"Audience\")");
 
             services.AddAuthentication(a =>
             {
@@ -132,12 +151,16 @@ namespace Pacagroup.Ecommerce.Services.WebApi
                     }
                 });
 
+                //LoggerText.writeLog("antes de GetName().Name}.xml");
+
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(Directory.GetCurrentDirectory(), xmlFile);
                 sw.IncludeXmlComments(xmlPath);
 
+                //LoggerText.writeLog("despues de w.IncludeXmlComments");
+
                 //Agergar seguridad a swagger para los metodos protegidos con Authorize
-                sw.AddSecurityDefinition("Authorization", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+                sw.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
                 {
                     Description = "Authorization by API key",
                     In = Microsoft.OpenApi.Models.ParameterLocation.Header,
@@ -150,15 +173,15 @@ namespace Pacagroup.Ecommerce.Services.WebApi
                     {
                         new OpenApiSecurityScheme
                         {
-                            Name = "Authorization",
-                            In = ParameterLocation.Header,
+                            //Name = "Authorization",
+                            //In = ParameterLocation.Header,
                             Reference = new OpenApiReference
                             {
-                                Id = "Authorization",
+                                Id = "Bearer",
                                 Type = ReferenceType.SecurityScheme
                             }
                         },
-                        new List<string>()
+                        new string[]{}
                     }
                 });
 
