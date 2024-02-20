@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System.IO;
 using System.Reflection;
@@ -44,31 +45,28 @@ namespace Pacagroup.Ecommerce.Services.WebApi.Modules.Swagger
                 var xmlPath = Path.Combine(Directory.GetCurrentDirectory(), xmlFile);
                 sw.IncludeXmlComments(xmlPath);
 
-                //LoggerText.writeLog("despues de w.IncludeXmlComments");
+                var securityScheme = new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Description = "Enter JWT Bearer token **_only_**",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
+                    Reference = new OpenApiReference()
+                    {
+                        Id = JwtBearerDefaults.AuthenticationScheme,
+                        Type = ReferenceType.SecurityScheme
+                    }
+                };
 
                 //Agergar seguridad a swagger para los metodos protegidos con Authorize
-                sw.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
-                {
-                    Description = "Authorization by API key",
-                    In = Microsoft.OpenApi.Models.ParameterLocation.Header,
-                    Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
-                    Name = "Authorization"
-                });
+                sw.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
 
                 sw.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
                 {
                     {
-                        new OpenApiSecurityScheme
-                        {
-                            //Name = "Authorization",
-                            //In = ParameterLocation.Header,
-                            Reference = new OpenApiReference
-                            {
-                                Id = "Bearer",
-                                Type = ReferenceType.SecurityScheme
-                            }
-                        },
-                        new string[]{}
+                        securityScheme, new string[]{}
                     }
                 });
 
