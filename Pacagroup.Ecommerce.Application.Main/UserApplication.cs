@@ -1,5 +1,6 @@
 ﻿using Pacagroup.Ecommerce.Application.DTO;
 using Pacagroup.Ecommerce.Application.Interface;
+using Pacagroup.Ecommerce.Application.Validator;
 using Pacagroup.Ecommerce.Domain.Entity;
 using Pacagroup.Ecommerce.Domain.Interface;
 using Pacagroup.Ecommerce.Transversal.Common;
@@ -12,22 +13,30 @@ namespace Pacagroup.Ecommerce.Application.Main
         private readonly IUserDomain userDomain;
         private readonly UserBuilder userBuilder;
         private readonly IAppLogger<UserApplication> logger;
+        private readonly UserDtoValidator userValidator;
 
-        public UserApplication(IUserDomain userDomain, UserBuilder userBuilder, IAppLogger<UserApplication> logger)
+        public UserApplication(IUserDomain userDomain, 
+            UserBuilder userBuilder, 
+            IAppLogger<UserApplication> logger,
+            UserDtoValidator userValidator)
         {
             this.userDomain = userDomain;
             this.userBuilder = userBuilder;
             this.logger = logger;
+            this.userValidator = userValidator;
         }
 
         public Response<UserDTO> Authenticate(string username, string password)
         {
             var response = new Response<UserDTO>();
 
-            if(string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            var validator = userValidator.Validate(new UserDTO() { UserName = username, Password = password });
+
+            if (!validator.IsValid)
             {
-                response.Message = "Los parametros son requeridos";
-                
+                response.Message = "Errores de Validación del objeto";
+                response.Errros = validator.Errors;
+
                 return response;
             }
 

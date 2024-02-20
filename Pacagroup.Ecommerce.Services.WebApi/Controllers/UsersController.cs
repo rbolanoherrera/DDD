@@ -47,7 +47,7 @@ namespace Pacagroup.Ecommerce.Services.WebApi.Controllers
                 return Ok(response);
             }
             else
-                return NotFound(response.Message);
+                return NotFound(response);
         }
 
         private string BuildToken(Response<UserDTO> userDTO)

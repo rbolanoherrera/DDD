@@ -6,17 +6,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Pacagroup.Ecommerce.Application.Interface;
-using Pacagroup.Ecommerce.Application.Main;
-using Pacagroup.Ecommerce.Domain.Core;
-using Pacagroup.Ecommerce.Domain.Interface;
 using Pacagroup.Ecommerce.Infrastructure.Data;
-using Pacagroup.Ecommerce.Infrastructure.Interface;
-using Pacagroup.Ecommerce.Infrastructure.Repository;
 using Pacagroup.Ecommerce.Services.WebApi.Modules.Authentication;
 using Pacagroup.Ecommerce.Services.WebApi.Modules.Injection;
 using Pacagroup.Ecommerce.Services.WebApi.Modules.Swagger;
-using Pacagroup.Ecommerce.Transversal.Common;
+using Pacagroup.Ecommerce.Services.WebApi.Modules.Validator;
 using Pacagroup.Ecommerce.Transversal.Logging;
 using Pacagroup.Ecommerce.Transversal.Mapper.Base;
 using System;
@@ -81,8 +75,8 @@ namespace Pacagroup.Ecommerce.Services.WebApi
             //LoggerText.writeLog("antes de GetValue<string>(\"Secret\")");
 
             services.AddAuthentication(Configuration);
-
             services.AddSwagger();
+            services.AddValidator();
 
         }
 
