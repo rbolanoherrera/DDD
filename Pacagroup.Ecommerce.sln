@@ -45,7 +45,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackupDatabase", "BackupDat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pacagroup.Ecommerce.Transversal.Logging", "Pacagroup.Ecommerce.Transversal.Logging\Pacagroup.Ecommerce.Transversal.Logging.csproj", "{29C28432-2FF4-47AB-AD5C-D620B2712CE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pacagroup.Ecommerce.Application.Validator", "Pacagroup.Ecommerce.Application.Validator\Pacagroup.Ecommerce.Application.Validator.csproj", "{0862CE64-FB96-4C96-91F3-BFB24A54655E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pacagroup.Ecommerce.Application.Validator", "Pacagroup.Ecommerce.Application.Validator\Pacagroup.Ecommerce.Application.Validator.csproj", "{0862CE64-FB96-4C96-91F3-BFB24A54655E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{304D978B-7B07-493B-B174-3364003144E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pacagroup.Ecommerce.Application.Test", "Pacagroup.Ecommerce.Application.Test\Pacagroup.Ecommerce.Application.Test.csproj", "{59B5D4FC-2591-4F5C-8FF9-922A39FA4EA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -109,6 +113,10 @@ Global
 		{0862CE64-FB96-4C96-91F3-BFB24A54655E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0862CE64-FB96-4C96-91F3-BFB24A54655E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0862CE64-FB96-4C96-91F3-BFB24A54655E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59B5D4FC-2591-4F5C-8FF9-922A39FA4EA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59B5D4FC-2591-4F5C-8FF9-922A39FA4EA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59B5D4FC-2591-4F5C-8FF9-922A39FA4EA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59B5D4FC-2591-4F5C-8FF9-922A39FA4EA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,6 +136,7 @@ Global
 		{DC385C84-854F-455C-9533-9A63E156CECF} = {5C9653D0-FC87-4658-A259-71651E55DA0E}
 		{29C28432-2FF4-47AB-AD5C-D620B2712CE8} = {909D9ACB-0F7E-4459-A23F-59062602C1C8}
 		{0862CE64-FB96-4C96-91F3-BFB24A54655E} = {45AE5A20-19A5-498E-9F81-6D5CBC8AD9E1}
+		{59B5D4FC-2591-4F5C-8FF9-922A39FA4EA4} = {304D978B-7B07-493B-B174-3364003144E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D704208F-C52D-4544-901F-F43FC564B128}
