@@ -25,7 +25,7 @@ namespace Pacagroup.Ecommerce.Services.WebApi.Modules.Injection
         {
             //LoggerText.writeLog("antes de GetSection(\"ConfigJWT\")");
 
-            services.AddSingleton<Transversal.Common.IConnectionFactory, ConnectionFactory>();
+            services.AddSingleton<DapperContext>();
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
             //LoggerText.writeLog("despues de typeof(LoggerAdapter<>)");

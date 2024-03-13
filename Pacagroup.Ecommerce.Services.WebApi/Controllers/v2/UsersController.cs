@@ -10,9 +10,13 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Pacagroup.Ecommerce.Services.WebApi.Controllers.v2
 {
+    /// <summary>
+    /// Contoller de Usuarios del sistema
+    /// </summary>
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
@@ -23,6 +27,12 @@ namespace Pacagroup.Ecommerce.Services.WebApi.Controllers.v2
         private readonly IAppLogger<UsersController> logger;
         private readonly AppSettings appSettings;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="userApplication"></param>
+        /// <param name="appSettings"></param>
+        /// <param name="logger"></param>
         public UsersController(IUserApplication userApplication,
             IOptions<AppSettings> appSettings,
             IAppLogger<UsersController> logger)
@@ -32,6 +42,11 @@ namespace Pacagroup.Ecommerce.Services.WebApi.Controllers.v2
             this.appSettings = appSettings.Value;
         }
 
+        /// <summary>
+        /// Autenticarse en la aplicación. Validación del Usuario y contraseña
+        /// </summary>
+        /// <param name="userDTO"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
         [Route("[action]")]
@@ -73,6 +88,68 @@ namespace Pacagroup.Ecommerce.Services.WebApi.Controllers.v2
             string tokenString = tokenHandler.WriteToken(token);
 
             return tokenString;
+        }
+
+        /// <summary>
+        /// Obtener todos los Usuarios
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetAll")]
+        public IActionResult GetAll()
+        {
+            var response = userApplication.GetAll();
+
+            if (response.Data != null)
+                return Ok(response);
+            else
+                return NotFound(response);
+        }
+
+        /// <summary>
+        /// Obtener todos los Usuarios metodo asincrono
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetAllSync")]
+        public async Task<IActionResult> GetAllSync()
+        {
+            var response = await userApplication.GetAllAsync();
+
+            if (response.Data != null)
+                return Ok(response);
+            else
+                return NotFound(response);
+        }
+
+        /// <summary>
+        /// Crear un nuevo Usuario
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [HttpPost("Insert")]
+        public IActionResult Insert([FromBody] UserDTO user)
+        {
+            var response = userApplication.Insert(user);
+
+            if (response.IsSuccess)
+                return Ok(response);
+            else
+                return BadRequest(response);
+        }
+
+        /// <summary>
+        /// Crear un nuevo Usuario, metodo asincrono
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [HttpPost("InsertAsync")]
+        public async Task<IActionResult> InsertAsync([FromBody] UserDTO user)
+        {
+            var response = await userApplication.InsertASync(user);
+
+            if (response.IsSuccess)
+                return Ok(response);
+            else
+                return BadRequest(response);
         }
 
     }

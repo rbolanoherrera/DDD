@@ -17,5 +17,25 @@ namespace Pacagroup.Ecommerce.Domain.Core
         {
             return userRepository.Authenticate(username, password);
         }
+
+        public IEnumerable<User> GetAll()
+        {
+            return userRepository.GetAll();
+        }
+
+        public async Task<IEnumerable<User>> GetAllAsync()
+        {
+            return await userRepository.GetAllAsync();
+        }
+
+        public bool Insert(User entity)
+        {
+            return userRepository.Insert(entity);
+        }
+
+        public async Task<bool> InsertASync(User entity)
+        {
+            return await userRepository.InsertAsync(entity);
+        }
     }
 }

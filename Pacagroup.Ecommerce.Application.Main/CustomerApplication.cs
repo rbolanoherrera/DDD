@@ -38,7 +38,7 @@ namespace Pacagroup.Ecommerce.Application.Main
                     response.Message = "Cliente Registrado exitosamente";
                 }
                 else
-                    response.Message = "El Cliente no pudo registrado";
+                    response.Message = "El Cliente no pudo ser registrado";
             }
             catch(Exception ex)
             {
@@ -186,7 +186,7 @@ namespace Pacagroup.Ecommerce.Application.Main
                     response.Message = "Cliente Registrado exitosamente";
                 }
                 else
-                    response.Message = "El Cliente no pudo registrado";
+                    response.Message = "El Cliente no pudo ser registrado";
             }
             catch (Exception ex)
             {
