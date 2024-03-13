@@ -10,6 +10,8 @@ namespace Pacagroup.Ecommerce.Domain.Interface
         bool Delete(string customerId);
         Customer Get(string customerId);
         IEnumerable<Customer> GetAll();
+        //IEnumerable<Customer> GetAllWithPAgination(int pageNumber, int pageSize);
+        //int Count();
 
         #endregion
 
@@ -20,6 +22,9 @@ namespace Pacagroup.Ecommerce.Domain.Interface
         Task<bool> DeleteAsync(string customerId);
         Task<Customer> GetAsync(string customerId);
         Task<IEnumerable<Customer>> GetAllAsync();
+
+        //Task<IEnumerable<Customer>> GetAllWithPAginationAsync(int pageNumber, int pageSize);
+        //Task<int> CountAsync();
 
         #endregion "Fin Metodos Asincronos"
     }

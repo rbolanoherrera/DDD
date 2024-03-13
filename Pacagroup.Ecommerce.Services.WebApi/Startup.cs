@@ -2,6 +2,7 @@ using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -11,6 +12,7 @@ using Pacagroup.Ecommerce.Services.WebApi.Modules.Authentication;
 using Pacagroup.Ecommerce.Services.WebApi.Modules.Injection;
 using Pacagroup.Ecommerce.Services.WebApi.Modules.Swagger;
 using Pacagroup.Ecommerce.Services.WebApi.Modules.Validator;
+using Pacagroup.Ecommerce.Services.WebApi.Modules.Versioning;
 using Pacagroup.Ecommerce.Transversal.Logging;
 using Pacagroup.Ecommerce.Transversal.Mapper.Base;
 using System;
@@ -75,6 +77,7 @@ namespace Pacagroup.Ecommerce.Services.WebApi
             //LoggerText.writeLog("antes de GetValue<string>(\"Secret\")");
 
             services.AddAuthentication(Configuration);
+            services.AddVersioning();
             services.AddSwagger();
             services.AddValidator();
 
@@ -85,18 +88,22 @@ namespace Pacagroup.Ecommerce.Services.WebApi
         /// </summary>
         /// <param name="app"></param>
         /// <param name="env"></param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
 
                 app.UseSwagger();
-                app.UseSwaggerUI();
-                //app.UseSwaggerUI(sw =>
-                //{
-                //    sw.SwaggerEndpoint("/swagger/v1/swagger.json", "My API Arquitectura DDD .NET");
-                //});
+                app.UseSwaggerUI(sw =>
+                {
+                    foreach (var descripcion in provider.ApiVersionDescriptions)
+                    {
+                        sw.SwaggerEndpoint($"/swagger/{descripcion.GroupName}/swagger.json",
+                            descripcion.GroupName.ToUpperInvariant());
+                    }
+                });
             }
 
             //app.MapHealthChecks("/health");

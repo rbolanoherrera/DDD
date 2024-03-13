@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using System.IO;
 using System.Reflection;
 
@@ -18,27 +20,11 @@ namespace Pacagroup.Ecommerce.Services.WebApi.Modules.Swagger
         /// <returns></returns>
         public static IServiceCollection AddSwagger(this IServiceCollection services)
         {
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+
             //services.AddSwaggerGen();//tambien funciona agregando solo esta línea
             services.AddSwaggerGen(sw =>
             {
-                sw.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
-                {
-                    Version = "v1",
-                    Title = "Implementando Arquitectura DDD en .NET",
-                    TermsOfService = new System.Uri("https://github.com/rbolanoherrera/DDD"),
-                    Contact = new Microsoft.OpenApi.Models.OpenApiContact()
-                    {
-                        Name = "Rafael Bolaños Herrera",
-                        Email = "ralfs1@hotmail.com",
-                        Url = new System.Uri("https://github.com/rbolanoherrera/DDD")
-                    },
-                    License = new Microsoft.OpenApi.Models.OpenApiLicense()
-                    {
-                        Name = "Open Source",
-                        Url = new System.Uri("https://github.com/rbolanoherrera/DDD")
-                    }
-                });
-
                 //LoggerText.writeLog("antes de GetName().Name}.xml");
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";

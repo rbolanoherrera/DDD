@@ -11,18 +11,19 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace Pacagroup.Ecommerce.Services.WebApi.Controllers
+namespace Pacagroup.Ecommerce.Services.WebApi.Controllers.v2
 {
     [Authorize]
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
+    [ApiVersion("2.0")]
     public class UsersController : Controller
     {
         private readonly IUserApplication userApplication;
         private readonly IAppLogger<UsersController> logger;
         private readonly AppSettings appSettings;
 
-        public UsersController(IUserApplication userApplication, 
+        public UsersController(IUserApplication userApplication,
             IOptions<AppSettings> appSettings,
             IAppLogger<UsersController> logger)
         {
@@ -34,9 +35,9 @@ namespace Pacagroup.Ecommerce.Services.WebApi.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("[action]")]
-        public IActionResult Authenticate([FromBody]UserDTO userDTO)
+        public IActionResult Authenticate([FromBody] UserDTO userDTO)
         {
-            logger.LogInformation($"entro a autenticarse {System.DateTime.Now}");
+            logger.LogInformation($"entro a autenticarse {DateTime.Now}");
 
             var response = userApplication.Authenticate(userDTO.UserName, userDTO.Password);
 
@@ -62,7 +63,7 @@ namespace Pacagroup.Ecommerce.Services.WebApi.Controllers
                     new Claim(ClaimTypes.Name, userDTO.Data.UserId.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(2),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), 
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature),
                 Issuer = appSettings.Issuer,
                 Audience = appSettings.Audience

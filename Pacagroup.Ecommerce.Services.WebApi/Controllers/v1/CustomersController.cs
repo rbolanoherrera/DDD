@@ -2,17 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Pacagroup.Ecommerce.Application.DTO;
 using Pacagroup.Ecommerce.Application.Interface;
-using Pacagroup.Ecommerce.Domain.Entity;
-using Pacagroup.Ecommerce.Transversal.Common;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 
-namespace Pacagroup.Ecommerce.Services.WebApi.Controllers
+namespace Pacagroup.Ecommerce.Services.WebApi.Controllers.v1
 {
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [ApiVersion("1.0")]
     public class CustomersController : ControllerBase
     {
         private readonly ICustomerApplication customerApplication;
@@ -31,7 +29,7 @@ namespace Pacagroup.Ecommerce.Services.WebApi.Controllers
                 return BadRequest();
 
             var response = customerApplication.Insert(customer);
-            if(response.IsSuccess)
+            if (response.IsSuccess)
                 return Ok(response);
 
             return BadRequest(response.Message);
