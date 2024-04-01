@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Pacagroup.Ecommerce.Services.WebApi.Controllers.v2
 {
+    /// <summary>
+    /// Adminsitrar los clientes
+    /// </summary>
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
@@ -16,6 +19,10 @@ namespace Pacagroup.Ecommerce.Services.WebApi.Controllers.v2
     {
         private readonly ICustomerApplication customerApplication;
 
+        /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="customerApplication"></param>
         public CustomersController(ICustomerApplication customerApplication)
         {
             this.customerApplication = customerApplication;
@@ -23,6 +30,11 @@ namespace Pacagroup.Ecommerce.Services.WebApi.Controllers.v2
 
         #region "Metodos Sincronos"
 
+        /// <summary>
+        /// ingresar clientes a la BD
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns></returns>
         [HttpPost("insert")]
         public IActionResult Insert([FromBody] CustomerDTO customer)
         {

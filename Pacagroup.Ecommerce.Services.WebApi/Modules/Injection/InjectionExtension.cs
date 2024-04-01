@@ -30,13 +30,16 @@ namespace Pacagroup.Ecommerce.Services.WebApi.Modules.Injection
 
             //LoggerText.writeLog("despues de typeof(LoggerAdapter<>)");
 
-            services.AddScoped<ICustomerApplication, CustomerApplication>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICustomerDomain, CustomerDomain>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<IUserApplication, UserApplication>();
+            services.AddScoped<ICustomerApplication, CustomerApplication>();
             services.AddScoped<IUserDomain, UserDomain>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserApplication, UserApplication>();
+            services.AddScoped<ICategoriesDomain, CategoriesDomain>();
+            services.AddScoped<ICategoriesRepository, CategoriesRepository>();
+            services.AddScoped<ICategoriesApplication, CategoriesApplication>();
 
             return services;
         }

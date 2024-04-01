@@ -8,6 +8,8 @@ namespace Pacagroup.Ecommerce.Transversal.Mapper.Base
         {
             services.AddScoped<CustomerBuilder>();
             services.AddScoped<UserBuilder>();
+            services.AddScoped<CategoriesBuilder>();
+            services.AddScoped<CategoriesForListBuilder>();
 
             return services;
         }
