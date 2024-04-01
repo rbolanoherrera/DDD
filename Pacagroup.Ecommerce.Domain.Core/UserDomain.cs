@@ -6,36 +6,36 @@ namespace Pacagroup.Ecommerce.Domain.Core
 {
     public class UserDomain : IUserDomain
     {
-        private readonly IUserRepository userRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public UserDomain(IUserRepository userRepository)
+        public UserDomain(IUnitOfWork unitOfWork)
         {
-            this.userRepository = userRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public User Authenticate(string username, string password)
         {
-            return userRepository.Authenticate(username, password);
+            return _unitOfWork.Users.Authenticate(username, password);
         }
 
         public IEnumerable<User> GetAll()
         {
-            return userRepository.GetAll();
+            return _unitOfWork.Users.GetAll();
         }
 
         public async Task<IEnumerable<User>> GetAllAsync()
         {
-            return await userRepository.GetAllAsync();
+            return await _unitOfWork.Users.GetAllAsync();
         }
 
         public bool Insert(User entity)
         {
-            return userRepository.Insert(entity);
+            return _unitOfWork.Users.Insert(entity);
         }
 
         public async Task<bool> InsertASync(User entity)
         {
-            return await userRepository.InsertAsync(entity);
+            return await _unitOfWork.Users.InsertAsync(entity);
         }
     }
 }
