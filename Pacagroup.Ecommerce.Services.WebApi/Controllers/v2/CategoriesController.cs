@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pacagroup.Ecommerce.Application.Interface;
+using System.Threading.Tasks;
 
 namespace Pacagroup.Ecommerce.Services.WebApi.Controllers.v2
 {
@@ -40,9 +41,9 @@ namespace Pacagroup.Ecommerce.Services.WebApi.Controllers.v2
         }
 
         [HttpGet("GetforList")]
-        public IActionResult GetForList()
+        public async Task<IActionResult> GetForList()
         {
-            var categories = categoriesApplication.GetForList();
+            var categories = await categoriesApplication.GetForList();
 
             if (categories.IsSuccess)
                 return Ok(categories);

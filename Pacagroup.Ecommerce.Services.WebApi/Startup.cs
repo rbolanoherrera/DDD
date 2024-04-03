@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Pacagroup.Ecommerce.Infrastructure.Data;
 using Pacagroup.Ecommerce.Services.WebApi.Modules.Authentication;
 using Pacagroup.Ecommerce.Services.WebApi.Modules.Injection;
+using Pacagroup.Ecommerce.Services.WebApi.Modules.Redis;
 using Pacagroup.Ecommerce.Services.WebApi.Modules.Swagger;
 using Pacagroup.Ecommerce.Services.WebApi.Modules.Validator;
 using Pacagroup.Ecommerce.Services.WebApi.Modules.Versioning;
@@ -80,6 +81,7 @@ namespace Pacagroup.Ecommerce.Services.WebApi
             services.AddVersioning();
             services.AddSwagger();
             services.AddValidator();
+            services.AddRedisCache(Configuration);
 
         }
 
